@@ -1,0 +1,18 @@
+# Allow-list: ignore everything, then track only hand-written config.
+# Keeps credentials, session history, caches, and synced files out of Git,
+# including any new files Claude Code adds here in the future.
+/*
+
+!/.gitignore
+!/README.md
+!/CLAUDE.md
+!/settings.json
+!/hooks/
+!/agents/
+!/commands/
+!/output-styles/
+!/keybindings.json
+
+# Own skills only; skills synced from claude.ai are re-downloaded automatically.
+!/skills/
+/skills/synced/
