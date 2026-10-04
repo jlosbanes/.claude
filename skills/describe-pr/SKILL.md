@@ -103,4 +103,4 @@ Reply in the user's usual style, in this order:
 4. If the existing PR body has content the new one drops (issue links such as "Closes #123", screenshots, checklists), list it and ask whether to keep it.
 5. Offer the next step, and wait for a yes before doing it:
    - **PR exists:** update it. Save the body to a file outside the repo (the session scratchpad) with the Write tool, then run `gh pr edit <number> --body-file <file>`. Other people can see a PR edit, so this needs the user's go-ahead every time.
-   - **No PR yet:** offer to open one with this body in a single step: `gh pr create --title "<type>: <summary>" --body-file <file>`, with the title in the user's commit format. Pushing the branch and creating the PR each need the user's explicit approval under the global git rules, and the approval hook will prompt as well.
+   - **No PR yet:** offer to open one with this body in a single step: `gh pr create --title "<type>: <summary>" --body-file <file>`, with the title in the user's commit format. Pushing the branch and creating the PR each need the user's explicit approval under the global git rules.
