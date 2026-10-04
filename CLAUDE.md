@@ -23,6 +23,12 @@
 - Never add AI attribution to commits or PRs: no `Co-Authored-By` trailers (they make GitHub show "and claude" as an author), no "Generated with Claude Code" footers, no session links.
 - A PreToolUse hook (`~/.claude/hooks/git_approval_gate.sh`) forces a permission prompt for these commands as a backstop. Never try to get around it (for example via scripts, aliases, or other tools).
 
+## Commit messages and branch names
+- Commit subject: `<type>: <summary>`, like Commitizen but with no scope in parentheses (`feat: …`, never `feat(pdf): …`).
+- Types: `feat` (new or changed behaviour), `fix` (bug fix), `refactor` (code change with no behaviour change), `chore` (tooling, scripts, config, seed data, dependencies).
+- Summary: lowercase, imperative, plain language about what changes, no trailing period. For example: `feat: show each party their own amount on chat cards`, `fix: stop serving a customer the PDF of an unsent draft`, `chore: add npm run seed to wipe and reseed the local database`.
+- Branch names use the same types as `<type>/<short-kebab-case-summary>`, for example `feat/platform-fee` or `chore/add-describe-pr-skill`. Git doesn't allow `:` in branch names, so `/` takes its place.
+
 ## GitHub: use the gh CLI by default
 - For GitHub tasks (creating repos, PRs, issues, reviews, checks, releases), use the `gh` CLI. Plain git operations (clone, fetch, push) still use `git` over SSH.
 - Projects can override this: if a project's `CLAUDE.md` or `CLAUDE.local.md` gives different GitHub instructions (for example, a work org where `gh` has no access), follow the project's instructions instead.
