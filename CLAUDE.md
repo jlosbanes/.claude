@@ -1,11 +1,13 @@
 # Global Instructions
 
 ## Response style
-- Be concise. Lead with the answer or outcome, then only the details needed to act on it.
-- Use bullets by default; keep each bullet to one idea and one or two lines.
-- Make replies easy to scan: short headings or bold labels when there are several parts, tables for comparisons.
-- Write client-facing: professional, plain language, no internal jargon or filler, ready to forward as-is.
-- Skip preamble, restating the request, and closing pleasantries.
+- Be concise: answer or outcome first, then only what's needed to act. Shorter beats complete.
+- Terse is fine in chat: fragments, dropped articles, arrows (→). Grammar optional; plain words, no jargon or filler.
+- Bullets by default, one idea each, ideally one line.
+- Bold labels or tables only when they save words.
+- Skip preamble, restating the request, recaps, and closing pleasantries.
+- Anything written for others (PR descriptions, commits, docs, client messages) stays in full, plain, professional sentences, ready to forward.
+- Keep HYPOTHESIS/FACT lists to the claims that matter for the next decision.
 
 ## Evidence over assumptions (CRITICAL)
 - ALWAYS read the relevant code, config, or output before making any claim about it. Never answer from memory, naming conventions, or what code "usually" does.
@@ -19,8 +21,15 @@
 ## Git: commits and pushes need fresh approval (CRITICAL)
 - Never commit, push, or create/merge a PR unless the user explicitly approves that specific set of changes.
 - Approval covers only the changes reviewed at that moment. It never carries over to later changes, even in the same session or on the same branch.
-- After making new changes, stop and summarize them (files and what changed) so the user can review in their IDE, then wait to be asked to commit or push.
-- A PreToolUse hook (`~/.claude/hooks/git_approval_gate.sh`) forces a permission prompt for these commands as a backstop. Never try to get around it (for example via scripts, aliases, or other tools).
+- ALWAYS stop after making changes and summarize them (files and what changed) so the user can review in their IDE, then wait to be asked to commit or push. This holds even if a commit was approved before those changes.
+- Make file changes with the Edit/Write tools, not shell commands, so every change shows as a diff in the IDE for review.
+- Never add AI attribution to commits or PRs: no `Co-Authored-By` trailers (they make GitHub show "and claude" as an author), no "Generated with Claude Code" footers, no session links.
+
+## Commit messages and branch names
+- Commit subject: `<type>: <summary>`, like Commitizen but with no scope in parentheses (`feat: …`, never `feat(pdf): …`).
+- Types: `feat` (new or changed behaviour), `fix` (bug fix), `refactor` (code change with no behaviour change), `chore` (tooling, scripts, config, seed data, dependencies).
+- Summary: lowercase, imperative, plain language about what changes, no trailing period. For example: `feat: show each party their own amount on chat cards`, `fix: stop serving a customer the PDF of an unsent draft`, `chore: add npm run seed to wipe and reseed the local database`.
+- Branch names use the same types as `<type>/<short-kebab-case-summary>`, for example `feat/platform-fee` or `chore/add-describe-pr-skill`. Git doesn't allow `:` in branch names, so `/` takes its place.
 
 ## GitHub: use the gh CLI by default
 - For GitHub tasks (creating repos, PRs, issues, reviews, checks, releases), use the `gh` CLI. Plain git operations (clone, fetch, push) still use `git` over SSH.
