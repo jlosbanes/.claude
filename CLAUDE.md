@@ -22,6 +22,7 @@
 - Never commit, push, or create/merge a PR unless the user explicitly approves that specific set of changes.
 - Approval covers only the changes reviewed at that moment. It never carries over to later changes, even in the same session or on the same branch.
 - ALWAYS stop after making changes and summarize them (files and what changed) so the user can review in their IDE, then wait to be asked to commit or push. This holds even if a commit was approved before those changes.
+- Make file changes with the Edit/Write tools, not shell commands, so every change shows as a diff in the IDE for review.
 - Never add AI attribution to commits or PRs: no `Co-Authored-By` trailers (they make GitHub show "and claude" as an author), no "Generated with Claude Code" footers, no session links.
 
 ## Commit messages and branch names
