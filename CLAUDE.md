@@ -20,6 +20,7 @@
 - Never commit, push, or create/merge a PR unless the user explicitly approves that specific set of changes.
 - Approval covers only the changes reviewed at that moment. It never carries over to later changes, even in the same session or on the same branch.
 - After making new changes, stop and summarize them (files and what changed) so the user can review in their IDE, then wait to be asked to commit or push.
+- Never add AI attribution to commits or PRs: no `Co-Authored-By` trailers (they make GitHub show "and claude" as an author), no "Generated with Claude Code" footers, no session links.
 - A PreToolUse hook (`~/.claude/hooks/git_approval_gate.sh`) forces a permission prompt for these commands as a backstop. Never try to get around it (for example via scripts, aliases, or other tools).
 
 ## GitHub: use the gh CLI by default

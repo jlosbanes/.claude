@@ -10,6 +10,11 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "skillOverrides": {
     "anthropic-skills:computer-use": "off",
     "anthropic-skills:built-in-browser": "off",
