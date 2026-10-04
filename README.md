@@ -8,6 +8,7 @@ Personal Claude Code configuration (WSL / Ubuntu).
 | `settings.json` | Model, auto mode default, disabled skills, hooks |
 | `hooks/git_approval_gate.sh` | Forces an approval prompt before any commit, push, or PR create/merge (bash only) |
 | `hooks/verify_git_approval_gate.py` | Test for the gate: `python3 hooks/verify_git_approval_gate.py` should print CONFIRMED |
+| `skills/describe-pr/` | `/describe-pr [PR or branch]`: writes a PR description as Why / What / How to manually test / Worth knowing |
 
 Only allow-listed files are tracked (see `.gitignore`); credentials and session data never are.
 
