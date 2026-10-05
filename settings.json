@@ -1,23 +1,23 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "skillOverrides": {
+    "anthropic-skills:computer-use": "off",
+    "anthropic-skills:built-in-browser": "off",
+    "anthropic-skills:chrome-browser": "off"
+  },
   "modelSettings": {
     "claude-opus-5-5": {
       "effortLevel": "xhigh"
     }
   },
   "tui": "fullscreen",
-  "theme": "dark-ansi",
-  "model": "opus",
-  "permissions": {
-    "defaultMode": "auto"
-  },
-  "attribution": {
-    "commit": "",
-    "pr": "",
-    "sessionUrl": false
-  },
-  "skillOverrides": {
-    "anthropic-skills:computer-use": "off",
-    "anthropic-skills:built-in-browser": "off",
-    "anthropic-skills:chrome-browser": "off"
-  }
+  "theme": "dark-ansi"
 }
