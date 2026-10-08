@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EFFORT_LEVEL": "max"
+  },
   "attribution": {
     "commit": "",
     "pr": "",
@@ -7,7 +10,6 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "opus",
   "skillOverrides": {
     "anthropic-skills:computer-use": "off",
     "anthropic-skills:built-in-browser": "off",
@@ -19,5 +21,6 @@
     }
   },
   "tui": "fullscreen",
-  "theme": "dark-ansi"
+  "theme": "dark-ansi",
+  "agentPushNotifEnabled": true
 }

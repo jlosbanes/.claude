@@ -44,7 +44,12 @@
 
 ## Verification scripts
 - Write them in Python or JavaScript (Node) so they are easy to review.
-- Save them in the root folder of the current project, named `verify_<what_it_checks>.py` or `verify-<what-it-checks>.js`.
+- Save them in a `claude-verify/` folder at the root of the current project (create it if missing), never in the root itself, named `verify_<what_it_checks>.py` or `verify-<what-it-checks>.js`.
+- Reach project code from there with `../` paths (e.g. `require('../helpers/TemplaDBHelper')`), and run them from the project root.
 - Start each script with a comment stating the hypothesis, how it is tested, and the expected result.
 - Keep them small, standalone, and read-only; never modify data or state unless the user approves it first.
 - Print a clear CONFIRMED / REFUTED result, then report it and move the bullet from HYPOTHESIS to FACT.
+
+## Browser automation: use Playwright by default
+- For headless browser work (reproducing bugs, screenshots, capturing console and network logs), use Playwright.
+- Don't install Puppeteer or another browser tool for the same job unless the user asks; reuse the existing Playwright install.
