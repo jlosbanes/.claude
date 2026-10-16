@@ -1,5 +1,5 @@
 ---
-name: describe-pr
+name: self-pr-describe
 description: Write a pull request description in the user's house format (Why, What with a Before/After table, How to manually test, Worth knowing) in plain, client-facing language, with every claim checked against the code. Use this whenever the user asks to describe, write up, document or fill in a PR, pull request or merge request, wants a PR body or summary for reviewers or QA, or is about to open a PR and needs its description, even if they don't name the format. Not for reviewing a PR's code for bugs.
 argument-hint: "[PR number, URL or branch]"
 ---

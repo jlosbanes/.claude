@@ -1,5 +1,5 @@
 ---
-name: respond-to-client
+name: self-client-respond
 description: Draft an email reply to a client in the user's house style — "Hello, <name>" greeting, a few short plain-language bullets a non-technical reader understands at a glance, and the "Warm Regards, John Christian L." sign-off — with every claim about the product checked first. Use this whenever the user wants to reply or respond to a client, answer a client's question or request, explain a bug, change or feature to a client, confirm or decline work, give a client an update, or pastes a client's email or screenshot and asks what to say back, even if they don't say "email". Not for internal messages to teammates, PR descriptions or commit messages.
 argument-hint: "[the client's message, or what the reply should say]"
 ---
