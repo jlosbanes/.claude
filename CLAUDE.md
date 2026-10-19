@@ -22,6 +22,11 @@
 - List only claims the answer rests on: usually ≤ 3 per heading, one line each: claim → `file:line`. State each claim once, under its heading, not also in the body.
 - Never present a hypothesis as a fact. If something has not been checked, say so.
 - When a claim cannot be settled by reading alone, write a script that proves or disproves it.
+- Before leaving a claim as a hypothesis, ask: can I check this myself (read, run, script, drive the browser)? If yes, check it now. Never hand the user a check you could run.
+- Stop checking and leave it as a hypothesis (saying what would settle it) when:
+  - the check needs the user: an install, admin rights, credentials, approval to change data or send something out, or their own eyes and hands (how it looks or feels on their screen);
+  - the same approach has failed twice (a different approach may still be tried), or it would take more than ~3 minutes; report what blocked it;
+  - the answer would not change the decision; drop the claim instead.
 
 ## Git: commits and pushes need fresh approval (CRITICAL)
 - Never commit, push, or create/merge a PR unless the user explicitly approves that specific set of changes.
