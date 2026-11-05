@@ -35,6 +35,11 @@
 - Make file changes with the Edit/Write tools, not shell commands, so every change shows as a diff in the IDE for review.
 - Never add AI attribution to commits or PRs: no `Co-Authored-By` trailers (they make GitHub show "and claude" as an author), no "Generated with Claude Code" footers, no session links.
 
+## Code comments: never add them (CRITICAL)
+- Never add inline comments to code you write or edit. Explain the code in the chat reply instead.
+- Leave comments that already exist in the code as they are, unless the user asks to change them.
+- Only exception: the header comment that verification scripts must start with (see "Verification scripts").
+
 ## Commit messages and branch names
 - Commit subject: `<type>: <summary>`, like Commitizen but with no scope in parentheses (`feat: …`, never `feat(pdf): …`).
 - Types: `feat` (new or changed behaviour), `fix` (bug fix), `refactor` (code change with no behaviour change), `chore` (tooling, scripts, config, seed data, dependencies).
