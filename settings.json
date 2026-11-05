@@ -7,6 +7,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "model": "opus",
   "skillOverrides": {
     "anthropic-skills:computer-use": "off",
     "anthropic-skills:built-in-browser": "off",
@@ -19,5 +20,6 @@
   },
   "tui": "fullscreen",
   "theme": "dark-ansi",
+  "switchModelsOnFlag": false,
   "agentPushNotifEnabled": true
 }
