@@ -19,6 +19,7 @@ Only allow-listed files are tracked (see `.gitignore`); credentials and session 
 | `/self-grill-me` | Interviews you in rounds of questions to stress-test a plan or decision. Copied from [mattpocock/skills](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md) (MIT) |
 | `/self-pr-create [base branch]` | Takes finished work to an open PR: /simplify, small commits, /self-pr-describe, then `gh pr create`, pausing for approval before committing and before pushing |
 | `/self-pr-describe [PR or branch]` | Writes a PR description as Why / What (with a Before/After table) / How to manually test / Worth knowing |
+| `/self-pr-push [what to include or leave out]` | Commits the current diff as small, one-concern commits, checks each one builds on its own, pushes, and lists the commits |
 
 ## Restore on a new machine
 
