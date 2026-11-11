@@ -21,7 +21,7 @@ Format a round like so:
 ➡️ <your recommended answer>
 ```
 
-Word each question so "yes" accepts your recommended answer.
+Word each question so "yes" accepts your recommended answer. A question the user leaves unanswered takes your recommended answer; list it as settled in the next round.
 
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a _later_ round, not this one.
 
