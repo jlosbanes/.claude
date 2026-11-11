@@ -7,7 +7,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "skillOverrides": {
     "anthropic-skills:computer-use": "off",
     "anthropic-skills:built-in-browser": "off",
