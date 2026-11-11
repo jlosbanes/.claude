@@ -35,6 +35,48 @@
 - Make file changes with the Edit/Write tools, not shell commands, so every change shows as a diff in the IDE for review.
 - Never add AI attribution to commits or PRs: no `Co-Authored-By` trailers (they make GitHub show "and claude" as an author), no "Generated with Claude Code" footers, no session links.
 
+## Work in small review slices (CRITICAL)
+- The user must understand every line written. Never hand over one big change (for example 4 features, 100 files, +2.5k lines at once).
+- Applies when a task will likely pass the size cap or touch more than one layer. Small fixes stay one change, with no slice plan.
+- Projects can override any of this in their own `CLAUDE.md` (for example, ticket rules that tie one PR to one ticket).
+
+### Plan first
+- Before writing code, post a numbered slice plan (slice → files → rough size) and wait for the user's OK.
+- One feature at a time: finish every slice of one feature before starting the next. A feature that is only waiting on review doesn't block the next one.
+
+### Slice order
+- Full-stack feature:
+  0. Contract: shared types, endpoint or action signatures, response shapes. Usually under 50 lines.
+  1. UI with mock data: screens built on a typed fixture file that gets committed. No backend calls.
+  2. Backend: schema and migrations, rules, validation, queries, endpoints or actions. No UI.
+  3. Wire-up: swap the fixture for real calls, connect forms, delete the fixture.
+  4. Polish, only if needed: shortcuts, nav entries, docs.
+- Other work: one kind of change per slice, never mixed:
+  - Fix: the smallest fix plus its regression test, in the same slice. Any cleanup it needs goes in a refactor slice before it.
+  - Refactor (no behaviour change): its own slice, before the behaviour change that needs it. Moves and renames get their own slice, with no edits to the moved code.
+  - Tests for existing untested code: their own slice, before any refactor of that code, to pin down how it behaves today.
+  - Dependency upgrade: one major version per slice, majors in sequence. Minor and patch bumps can share a slice.
+  - Formatting or lint sweep: its own slice, with its commit added to `.git-blame-ignore-revs`.
+  - Codemod or other tool-generated change: its own slice, no size cap. The handover gives the exact command so the user can re-run it and compare.
+  - Config, CI or infra change: its own slice.
+
+### Size
+- Aim for 200 changed lines (added + deleted) or fewer. Hard cap: 400 lines and 10 files per slice.
+- Lockfiles, generated files and build output don't count; deleting a whole file counts as about 1 line. Migrations, docs and tests count.
+- If a slice passes the cap mid-work, stop, hand over what's done as that slice, and move the rest into a new slice in the plan.
+
+### Independent and green
+- Every slice passes typecheck and lint and works on its own: the UI slice can be clicked through with mock data, the backend slice can be called directly.
+- UI and backend slices never wait on each other; only wire-up needs both.
+- Build slices one at a time, even independent ones. A subagent brief covers exactly one slice.
+
+### Handover and git
+- After each slice, list its files in reading order, one line each on what the file does. This list may go past the 15-line reply ceiling.
+- A backend slice's handover includes a ready-to-run call: a `curl` command, or a verification script where the API can't be called directly (for example Next.js server actions).
+- Start the next slice only after the user approves the current one (commits it or says "next").
+- Each slice is its own PR off the default branch. Slice 0 merges first; while it is still in review, the UI and backend branches start from the slice 0 branch and are retargeted once it merges. Wire-up comes after both. In projects that commit straight to the default branch, make one commit per slice.
+- Each slice PR description names its feature and position ("slice 2 of 4: backend") and links the sibling PRs.
+
 ## Code comments: never add them (CRITICAL)
 - Never add inline comments to code you write or edit. Explain the code in the chat reply instead.
 - Leave comments that already exist in the code as they are, unless the user asks to change them.
