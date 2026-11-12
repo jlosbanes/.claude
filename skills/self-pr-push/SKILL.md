@@ -1,13 +1,13 @@
 ---
 name: self-pr-push
-description: Commit the current working-tree changes as small, one-concern commits in the user's `<type>: <summary>` format, check that each commit builds on its own, push the branch, and reply with the list of commits. Run only when the user types /self-pr-push.
+description: Commit this session's changes as small, one-concern commits in the user's `<type>: <summary>` format, check that each commit builds on its own, push the branch, and reply with the list of commits. Run only when the user types /self-pr-push.
 argument-hint: "[what to include, leave out, or do after]"
 disable-model-invocation: true
 ---
 
 # Small commits and push
 
-The user types this instead of "create small commits and push". Typing it is their approval to commit and push the changes in the working tree right now, which they have reviewed in their IDE, so don't stop to ask again. The approval covers only those changes: never edit code to make a commit pass a check.
+The user types this instead of "create small commits and push". Typing it is their approval to commit and push the changes this session made, which they have reviewed in their IDE, so don't stop to ask again. The approval covers only those changes: never edit code to make a commit pass a check.
 
 `$ARGUMENTS` may narrow or extend the job ("include the lock files", "only backend/", "then fix review 1"). Follow it. Anything it asks for after the push is a normal request, outside this skill.
 
@@ -22,7 +22,7 @@ The user types this instead of "create small commits and push". Typing it is the
    - The default branch (`main`, `master`, `development`, `dev`): push only if the project's instructions or memory say work goes straight onto it (for example a "build on main" memory). Otherwise make the commits, then ask before pushing and offer a `<type>/<short-kebab-case-summary>` branch.
    - Behind its remote: stop before committing and say so. Pulling, rebasing or merging needs the user's OK.
 4. What goes in:
-   - Every tracked change in the tree, including edits the user or another session made while you worked. The user means "the current diff".
+   - Every change this session made. Leave out edits from other sessions, whether they were there before you started or appeared while you worked, and list them in the reply.
    - Lockfiles, with the dependency change that produced them.
    - Untracked files this session created or that are plainly part of the work (a new file the diff imports, a migration).
    - Leave out untracked files you can't place, and list them in the reply.
@@ -34,8 +34,7 @@ Read `git diff --stat`, then the diff itself wherever the groups aren't obvious 
 
 - one fix, one feature step, one refactor, one dependency bump or one config change per commit;
 - refactors and moves before the behaviour change that needs them, and shared code before the code that uses it, so every commit builds;
-- generated files with their source (a migration with its generated types), docs with the change they describe, tests with the code they test;
-- the user's or another session's edits in their own commit when they are a separate concern.
+- generated files with their source (a migration with its generated types), docs with the change they describe, tests with the code they test.
 
 Split a file that holds two concerns by hunk with `hunks.py` (step 3), and stop there. Never edit the working tree to fake an in-between version of a file, and never write blobs into the index by hand: it is slow, and the result is code nobody wrote or reviewed. If a split would need that, keep those concerns in one commit and say why in the reply. A commit that must be large to build, such as a rename across many files, is fine for the same reason.
 
