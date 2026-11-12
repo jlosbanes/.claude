@@ -33,16 +33,8 @@ Most rules apply to the changed lines. Rules about a whole file, such as line li
 
 ## 4. Check the rest by hand
 
-For each changed file, go through every rule on the checklist that the tools in step 3 don't cover. These usually need a careful read:
+For each changed file, go through every rule on the checklist that the tools in step 3 don't cover, checking each against the standards' own wording. Rules on naming, file structure, state and side effects, code shape, imports, comments and domain-specific files usually need a careful read.
 
-- **Naming:** yes/no questions for functions that return booleans, a verb first for other functions, nouns for components, the `use` prefix for hooks.
-- **File structure:** layout and folder rules, one component per file, the line limit, the props pattern.
-- **State and side effects:** state passed down through components that don't use it, how stores are built and read, Effects that the standards rule out.
-- **Code shape:** blank lines after early returns, nested ternaries.
-- **Imports:** import order and import paths.
-- **Comments:** no comments the standards forbid.
-- **Dates:** the date-handling rules.
-- **Domain files:** the rules for server actions and validation files.
 - **Duplicates:** for any new helper, constant or type, search the codebase (`grep` the name and its key expressions, especially under the shared folder) for an existing one with the same purpose or the same body. A value that only shares a name, such as a per-form id, isn't a duplicate.
 
 ## 5. Verify every finding
