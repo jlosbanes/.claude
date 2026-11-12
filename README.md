@@ -15,11 +15,11 @@ Only allow-listed files are tracked (see `.gitignore`); credentials and session 
 | Skill | What it does |
 |---|---|
 | `/self-client-respond [client's message]` | Drafts a client email reply: "Hello, &lt;name&gt;", short plain-language bullets, house sign-off, every claim checked first |
-| `/self-code-review [PR, branch or path]` | Reviews a diff, branch or PR and reports verified findings as one short table with a recommendation per row |
+| `/self-code-review [PR, branch or path]` | Reviews a diff, branch or PR and reports verified findings as two short tables, Fix and Decide, with a severity per row |
 | `/self-grill-me` | Interviews you in rounds of questions to stress-test a plan or decision. Copied from [mattpocock/skills](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md) (MIT) |
 | `/self-pr-create [base branch]` | Takes finished work to an open PR: /simplify, small commits, /self-pr-describe, then `gh pr create`, pausing for approval before committing and before pushing |
 | `/self-pr-describe [PR or branch]` | Writes a PR description as Why / What (with a Before/After table) / How to manually test / Worth knowing |
-| `/self-pr-push [what to include or leave out]` | Commits the current diff as small, one-concern commits, checks each one builds on its own, pushes, and lists the commits |
+| `/self-pr-push [what to include or leave out]` | Commits this session's changes as small, one-concern commits, checks each one builds on its own, pushes, and lists the commits |
 
 ## Restore on a new machine
 
@@ -33,5 +33,5 @@ Only allow-listed files are tracked (see `.gitignore`); credentials and session 
 4. Git identity and global ignore for verification scripts:
    `git config --global user.name "jlosbanes"`
    `git config --global user.email "<email>"`
-   `printf '/verify_*.py\n/verify-*.js\n' >> ~/.config/git/ignore`
+   `printf '/claude-verify/\n/verify_*.py\n/verify-*.js\n' >> ~/.config/git/ignore`
 5. Install and sign in to the GitHub CLI (`gh auth login`, SSH protocol).
