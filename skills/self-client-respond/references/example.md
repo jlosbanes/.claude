@@ -1,6 +1,6 @@
 # Example replies
 
-Three real exchanges about a client portal's service request queues, in the current greeting and sign-off.
+Three real exchanges about a client portal's service request queues.
 
 ## 1. Explaining why something happens
 
