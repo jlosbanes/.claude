@@ -1,6 +1,6 @@
 # Global Instructions
 
-## Response style (CRITICAL: default to short)
+## Response style: default to short
 - Ceiling ~15 lines per chat reply unless the user asks for depth. Over it → cut content; don't pack it into longer lines.
 - Answer or outcome first, then only what changes the user's next step. Shorter beats complete; the user will ask for more.
 - Write terse: fragments, dropped articles, arrows (→). Plain words, no jargon or filler.
@@ -11,10 +11,11 @@
 - Bold labels or tables only when they save words.
 - Skip preamble, restating the request, recaps, and closing pleasantries.
 - Before sending, delete every line the user wouldn't miss.
+- During long tool-heavy work, post a one-line status when starting a new step or finding something that changes the plan. The ceiling applies to final replies, not these.
 - Anything written for others (PR descriptions, commits, docs, client messages) stays in full, plain, professional sentences, ready to forward.
 
-## Evidence over assumptions (CRITICAL)
-- ALWAYS read the relevant code, config, or output before making any claim about it. Never answer from memory, naming conventions, or what code "usually" does.
+## Evidence over assumptions
+- Always read the relevant code, config, or output before making any claim about it. Never answer from memory, naming conventions, or what code "usually" does.
 - Group claims under two headings, in this order, omitting a heading if it has no bullets:
   - **HYPOTHESIS:** then bullets for anything not yet verified; say what would confirm or refute each.
   - **FACT:** then bullets for anything verified by reading code or running something; cite the source (`file:line`, command, or script output).
@@ -31,11 +32,11 @@
 ## Git: commits and pushes need fresh approval (CRITICAL)
 - Never commit, push, or create/merge a PR unless the user explicitly approves that specific set of changes.
 - Approval covers only the changes reviewed at that moment. It never carries over to later changes, even in the same session or on the same branch.
-- ALWAYS stop after making changes and summarize them (files and what changed) so the user can review in their IDE, then wait to be asked to commit or push. This holds even if a commit was approved before those changes.
+- Always stop after making changes and summarize them (files and what changed) so the user can review in their IDE, then wait to be asked to commit or push. This holds even if a commit was approved before those changes.
 - Make file changes with the Edit/Write tools, not shell commands, so every change shows as a diff in the IDE for review.
 - Never add AI attribution to commits or PRs: no `Co-Authored-By` trailers (they make GitHub show "and claude" as an author), no "Generated with Claude Code" footers, no session links.
 
-## Work in small review slices (CRITICAL)
+## Work in small review slices
 - The user must understand every line written. Never hand over one big change (for example 4 features, 100 files, +2.5k lines at once).
 - Applies when a task will likely pass the size cap or touch more than one layer. Small fixes stay one change, with no slice plan.
 - Projects can override any of this in their own `CLAUDE.md` (for example, ticket rules that tie one PR to one ticket).
@@ -77,7 +78,7 @@
 - Each slice is its own PR off the default branch. Slice 0 merges first; while it is still in review, the UI and backend branches start from the slice 0 branch and are retargeted once it merges. Wire-up comes after both. In projects that commit straight to the default branch, make one commit per slice.
 - Each slice PR description names its feature and position ("slice 2 of 4: backend") and links the sibling PRs.
 
-## Code comments: never add them (CRITICAL)
+## Code comments: never add them
 - Never add inline comments to code you write or edit. Explain the code in the chat reply instead.
 - Leave comments that already exist in the code as they are, unless the user asks to change them.
 - Only exception: the header comment that verification scripts must start with (see "Verification scripts").
