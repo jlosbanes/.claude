@@ -106,3 +106,9 @@
 ## Browser automation: use Playwright by default
 - For headless browser work (reproducing bugs, screenshots, capturing console and network logs), use Playwright.
 - Don't install Puppeteer or another browser tool for the same job unless the user asks; reuse the existing Playwright install.
+
+### UI screenshots for verification
+- After any UI change, take full-page Playwright screenshots of each affected screen at four viewports: mobile (360×800), tablet (768×1024), laptop (1366×768) and full HD (1920×1080).
+- Save them in `claude-verify/screenshots/`, named `<screen-or-state>-<viewport>.png` (for example `checkout-mobile.png`).
+- Look at every screenshot yourself before handing over, and fix any layout break you spot.
+- List each screenshot as a clickable link in the handover so the user can review them in the IDE.
