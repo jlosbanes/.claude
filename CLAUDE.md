@@ -103,6 +103,11 @@
 - Keep them small, standalone, and read-only; never modify data or state unless the user approves it first.
 - Print a clear CONFIRMED / REFUTED result, then report it and move the bullet from HYPOTHESIS to FACT.
 
+## Timeouts: fail fast
+- Keep every wait short so the user never sits through a stuck check: element and condition waits about 3–6 s, page loads about 10–15 s, a whole script or command a few minutes at most.
+- A check that times out should fail fast and say what it was waiting for; fix the cause or the selector and re-run, rather than raising the timeout.
+- Always clean up what a check starts (browsers, servers, background processes), including on early exit.
+
 ## Browser automation: use Playwright by default
 - For headless browser work (reproducing bugs, screenshots, capturing console and network logs), use Playwright.
 - Don't install Puppeteer or another browser tool for the same job unless the user asks; reuse the existing Playwright install.
