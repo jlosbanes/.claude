@@ -1,12 +1,12 @@
 ---
 name: self-code-review
-description: Review the current diff, a branch or a PR for bugs and risks, and report the verified findings as two short tables, "Fix" and "Decide", tagged by type (Business Behaviour, Code Level, AI Behaviour, Security, Data, Performance, Test Coverage, Maintainability). Use this when the user types /self-code-review, or asks to review their changes, a branch or a PR and wants the findings in their table format. Read-only: it never edits code.
+description: Review the current diff, a branch or a PR for bugs and risks, and report the verified findings as two short tables, "Fix" and "Decide", tagged by type (Business Behaviour, Code Level, AI Behaviour, Security, Data, Performance, Test Coverage, Maintainability). Use this when the user types /self-code-review, or asks to review their changes, a branch or a PR and wants the findings in their table format. It then fixes every Fix row straight away; Decide rows wait for the user. It never commits or pushes.
 argument-hint: "[PR number, URL, branch or path]"
 ---
 
 # Self Code Review
 
-Review a change the way the built-in `/code-review` does: find real bugs and risks, verify each one against the code. But report them as two scannable tables, one of fixes to make and one of choices for the user, instead of long failure-scenario paragraphs.
+Review a change the way the built-in `/code-review` does: find real bugs and risks, verify each one against the code. But report them as two scannable tables, one of fixes to make and one of choices for the user, instead of long failure-scenario paragraphs. Then make every fix in the first table without waiting to be asked.
 
 Don't call the `ReportFindings` tool. Print the tables as text.
 
@@ -88,7 +88,7 @@ Rank each table by severity, most severe first. Reply with exactly this shape:
 | 5 | Low | Security | Admins can edit totals through the API, skipping the audit log | Skip: admins are trusted |
 ```
 
-Then one closing line: which rows to fix and the decisions needed, e.g. "Fix all? Your call on the Decide rows." When only some fixes are worth doing now, name them by severity: "Fix the Critical and High rows?"
+Then go straight to step 6. Don't ask whether to fix.
 
 Rules for the tables:
 - **Issue:** one plain-language line, about 15 words at most. Say what goes wrong for whom, not how the code is built. Name screens and fields the way the product does. Add a code identifier only when it's the clearest pointer.
@@ -104,6 +104,19 @@ Rules for the tables:
 - If the change is uncommitted, say once that the review covers the working tree.
 - When re-issuing the tables in the same conversation, drop rows the user has already resolved.
 
-## 6. After the user chooses
+## 6. Fix the Fix rows
 
-This skill is read-only. Fix only the rows the user picks, following their global rules: use Edit/Write, run the project's tests and type checks, then stop and list the changed files for review. Don't commit or push.
+Fix every row in the Fix table, most severe first, following the user's global rules:
+
+- Use Edit/Write, and make the smallest change that fixes the row.
+- Prove each fix with a test or a verification script that shows it now works.
+- Stay in scope: touch only the files in the change plus what a fix needs. If a file is being edited by someone else (another session or person), leave it alone and say so.
+- If a fix turns out to need a product choice, or grows well past "small", stop that row and move it to the Decide table.
+- Run the project's type checks and tests once all fixes are in.
+
+Never act on a Decide row until the user picks it. Don't commit or push.
+
+Finish with:
+- one line per fixed row: `#n → what changed (file:line)`, plus how it was proven;
+- the changed files, so the user can review them in the IDE;
+- one closing line naming the Decide rows that need a call, e.g. "Your call on 3–5."
